@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sap-blue: #22c55e;
+  --color-dark-bg: transparent;
+  --color-dark-surface: rgba(13, 22, 45, 0.35);
+  /* Highly transparent for liquid glass */
+  --color-dark-border: rgba(255, 255, 255, 0.12);
+  /* Glossy border edge */
+}
+
+@layer base {
+  :root {
+    --bg-color: #f8fafc;
+    --surface-color: #ffffff;
+    --sidebar-color: #f1f5f9;
+    --text-color: #0f172a;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+  }
+
+  .dark {
+    --bg-color: transparent;
+    --surface-color: rgba(13, 22, 45, 0.35);
+    --sidebar-color: rgba(8, 14, 30, 0.45);
+    --text-color: #f8fafc;
+    --text-muted: #8892b0;
+    --border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  body {
+    background-color: #f8fafc;
+    background-image: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+    background-attachment: fixed;
+    color: var(--text-color);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  .dark body {
+    /* Ultra-realistic, enterprise-grade production bi-color background */
+    background-color: #020617;
+    background-image: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+    background-attachment: fixed;
+    position: relative;
+    z-index: 0;
+  }
+
+  /* Light Mode Clean Flat Glass */
+  html:not(.dark) [class*="surface-color"],
+  html:not(.dark) [class*="bg-sidebar"] {
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04), 0 4px 12px 0 rgba(0, 0, 0, 0.02);
+  }
+
+  /* Global Liquid Glassmorphism Application for Dark Mode */
+  .dark [class*="bg-dark-surface"],
+  .dark [class*="bg-sidebar"],
+  .dark [class*="surface-color"],
+  .dark [class*="bg-[#11141c]"] {
+    backdrop-filter: blur(24px) saturate(150%);
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 8px 32px 0 rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* Scrollbar reset */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Pulse animation for dots */
+@keyframes dot-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 4px currentColor;
+  }
+
+  50% {
+    opacity: 0.4;
+    box-shadow: 0 0 10px currentColor;
+  }
+}
+
+.animate-dot-pulse {
+  animation: dot-pulse 1.2s infinite;
+}
+
+/* 3D Splash Screen Custom Animations */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
+
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes grid-move {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(4rem);
+  }
+}
