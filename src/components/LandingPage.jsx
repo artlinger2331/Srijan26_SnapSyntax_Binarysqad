@@ -129,7 +129,7 @@ const LandingPage = ({ onEnterDashboard }) => {
       <main className="container mx-auto px-6 flex-1 flex flex-col items-center justify-center z-10 relative">
         
         {/* The God Core (Background/Centerpiece) */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center pointer-events-none opacity-40 mix-blend-screen scale-150 lg:scale-100">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center pointer-events-none opacity-30 mix-blend-screen scale-100 lg:scale-75">
            {/* Complex Orbital System */}
            <div className="relative w-[800px] h-[800px]" style={{ perspective: '1200px' }}>
               <OrbitalRing size={800} duration={40} borderStyle="border-white/5 border-dashed" color="" />
@@ -147,14 +147,14 @@ const LandingPage = ({ onEnterDashboard }) => {
         </div>
 
         {/* Foreground Content */}
-        <div className="relative z-20 flex flex-col items-center text-center max-w-5xl">
+        <div className="relative z-20 flex flex-col items-center text-center max-w-3xl px-6 py-12">
           
           {/* Status Chip */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#0a0f1c]/80 border border-emerald-500/30 text-[11px] font-bold text-emerald-400 tracking-[0.2em] uppercase mb-10 shadow-[0_0_30px_rgba(16,185,129,0.15)] backdrop-blur-xl"
+            className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#0a0f1c]/80 border border-emerald-500/30 text-[11px] font-bold text-emerald-400 tracking-[0.2em] uppercase mb-8 shadow-[0_0_30px_rgba(16,185,129,0.15)] backdrop-blur-xl"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -168,7 +168,7 @@ const LandingPage = ({ onEnterDashboard }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="text-6xl md:text-8xl lg:text-[100px] font-black tracking-tight leading-[0.95] mb-8"
+            className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.1] mb-6"
           >
             Supply Chain <br/>
             <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-cyan-400 to-sap-blue drop-shadow-[0_0_40px_rgba(34,197,94,0.3)]">
@@ -188,7 +188,7 @@ const LandingPage = ({ onEnterDashboard }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5, delay: 0.6 }}
-            className="text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed font-light mb-12"
+            className="text-base md:text-lg text-slate-400 max-w-2xl leading-relaxed font-light mb-10"
           >
             Enter the pinnacle of structural inventory intelligence. Unprecedented SAP integration, sub-millisecond precision, and an interface forged for the modern enterprise.
           </motion.p>
@@ -197,7 +197,7 @@ const LandingPage = ({ onEnterDashboard }) => {
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1, delay: 0.8, type: "spring" }}
-            className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto"
+            className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto justify-center"
           >
             <button
               onClick={onEnterDashboard}
@@ -216,19 +216,19 @@ const LandingPage = ({ onEnterDashboard }) => {
         <div className="absolute inset-0 pointer-events-none">
           <FloatingWidget 
             delay={1.5} icon={Cpu} title="Processing" value="Quantum Grid" glowColor="blue"
-            className="top-[15%] left-[5%] lg:left-[15%]" xOffset={10}
+            className="top-[10%] left-[5%] lg:left-[8%]" xOffset={10}
           />
           <FloatingWidget 
             delay={1.7} icon={Activity} title="Sync Rate" value="0.4 ms / TPS" glowColor="emerald"
-            className="top-[25%] right-[5%] lg:right-[15%]" xOffset={-10}
+            className="top-[10%] right-[5%] lg:right-[8%]" xOffset={-10}
           />
           <FloatingWidget 
             delay={1.9} icon={Box} title="Global Nodes" value="14,204 ONLINE" glowColor="cyan"
-            className="bottom-[25%] left-[10%] lg:left-[20%]" xOffset={10}
+            className="bottom-[12%] left-[5%] lg:left-[8%]" xOffset={10}
           />
           <FloatingWidget 
             delay={2.1} icon={ShieldCheck} title="Protocol" value="SOC2 / AES-256" glowColor="indigo"
-            className="bottom-[15%] right-[10%] lg:right-[20%]" xOffset={-10}
+            className="bottom-[12%] right-[5%] lg:right-[8%]" xOffset={-10}
           />
         </div>
 
