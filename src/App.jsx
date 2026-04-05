@@ -75,29 +75,60 @@ const Sidebar = ({ active, setActive, isOpen, setIsOpen }) => {
         )}
       </AnimatePresence>
 
-      {/* Sidebar - Desktop visible, Mobile slides in */}
-      <motion.div 
-        initial={false}
-        animate={{ 
-          x: isOpen ? 0 : -280,
-          opacity: isOpen ? 1 : 0,
-          pointerEvents: isOpen ? 'auto' : 'none'
-        }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className={`fixed lg:relative lg:translate-x-0 w-[220px] shrink-0 bg-surface-color dark:bg-sidebar border-r border-border-color dark:border-dark-border flex flex-col h-screen overflow-hidden z-[41] lg:z-0`}
+      {/* Mobile Sidebar - Only visible on mobile, animated */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ x: -280, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -280, opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="fixed lg:hidden w-[220px] shrink-0 bg-surface-color dark:bg-sidebar border-r border-border-color dark:border-dark-border flex flex-col h-screen overflow-hidden z-[41]"
+          >
+            {/* Brand */}
+            <div className="px-5 py-4 border-b border-border-color dark:border-dark-border flex items-center gap-2 justify-between">
+              <div className="flex items-center gap-2">
+                <div className="bg-sap-blue text-white px-2 py-0.5 rounded text-sm font-black tracking-tighter">SAP</div>
+                <span className="font-bold text-[13px] text-text-color tracking-wide hidden sm:inline">Smart Inventory</span>
+              </div>
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="lg:hidden text-text-muted hover:text-text-color"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Main Nav */}
+            <nav className="p-3 flex flex-col gap-1">
+              {navTop.map(item => <NavItem key={item.id} item={item} />)}
+            </nav>
+
+            <div className="px-5 py-2 mt-2">
+              <span className="text-[10px] font-bold text-text-muted uppercase tracking-widest">Stock Ops</span>
+            </div>
+            <nav className="p-3 flex flex-col gap-1 flex-1 overflow-y-auto">
+              {navStock.map(item => <NavItem key={item.id} item={item} />)}
+            </nav>
+
+            {/* Footer Nav */}
+            <div className="p-3 border-t border-border-color dark:border-dark-border">
+              <NavItem item={{ id: 'settings', icon: '⚙', label: 'Settings' }} />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Desktop Sidebar - Always visible on desktop, never animated */}
+      <div 
+        className="hidden lg:flex w-[220px] shrink-0 bg-surface-color dark:bg-sidebar border-r border-border-color dark:border-dark-border flex-col h-screen overflow-hidden z-0"
       >
         {/* Brand */}
         <div className="px-5 py-4 border-b border-border-color dark:border-dark-border flex items-center gap-2 justify-between">
           <div className="flex items-center gap-2">
             <div className="bg-sap-blue text-white px-2 py-0.5 rounded text-sm font-black tracking-tighter">SAP</div>
-            <span className="font-bold text-[13px] text-text-color tracking-wide hidden sm:inline">Smart Inventory</span>
+            <span className="font-bold text-[13px] text-text-color tracking-wide">Smart Inventory</span>
           </div>
-          <button 
-            onClick={() => setIsOpen(false)}
-            className="lg:hidden text-text-muted hover:text-text-color"
-          >
-            <X size={20} />
-          </button>
         </div>
 
         {/* Main Nav */}
@@ -116,7 +147,7 @@ const Sidebar = ({ active, setActive, isOpen, setIsOpen }) => {
         <div className="p-3 border-t border-border-color dark:border-dark-border">
           <NavItem item={{ id: 'settings', icon: '⚙', label: 'Settings' }} />
         </div>
-      </motion.div>
+      </div>
     </>
   )
 }
