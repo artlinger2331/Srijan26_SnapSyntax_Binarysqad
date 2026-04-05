@@ -287,16 +287,18 @@ export default function App() {
         {/* TOP BAR SPACER (Reserves physical space so layout doesn't break) */}
         <div className="h-14 w-full shrink-0" />
 
-        {/* WORKSPACE AREA (SPLIT LEFT AND RIGHT) */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeNav}
-            initial={{ opacity: 0, scale: 0.98, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.98, y: -10, transition: { duration: 0.15 } }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="flex-1 flex flex-col lg:flex-row min-w-0 min-h-0 gap-0 lg:gap-4"
-          >
+        {/* CONTENT AREA - Scrollable */}
+        <div className="flex-1 flex flex-col min-w-0 min-h-0 overflow-y-auto">
+          {/* WORKSPACE AREA (SPLIT LEFT AND RIGHT) */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeNav}
+              initial={{ opacity: 0, scale: 0.98, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.98, y: -10, transition: { duration: 0.15 } }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="flex-1 flex flex-col lg:flex-row min-w-0 gap-0 lg:gap-4"
+            >
             {activeNav === 'dashboard' ? (
               <div className="flex-1 flex min-h-0">
                 
@@ -373,8 +375,11 @@ export default function App() {
             </div>
           </div>
         )}
-          </motion.div>
-        </AnimatePresence>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* FOOTER - Outside scrollable area */}
         <Footer />
 
         {/* TOP BAR (Rendered LAST so its backdrop-filter captures everything!) */}
