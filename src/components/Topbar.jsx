@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, Clock, Bell, Sun, Moon } from 'lucide-react'
+import { Search, Clock, Bell, Sun, Moon, Menu } from 'lucide-react'
 
-export default function TopBar({ showNotifications, setShowNotifications, setActiveNav }) {
+export default function TopBar({ showNotifications, setShowNotifications, setActiveNav, onMenuClick }) {
   const [theme, setTheme] = useState('dark')
   const [unreadCount, setUnreadCount] = useState(2)
 
@@ -35,19 +35,36 @@ export default function TopBar({ showNotifications, setShowNotifications, setAct
   }
 
   return (
-    <div className="h-14 shrink-0 px-5 flex items-center justify-between bg-surface-color dark:bg-sidebar border-b border-border-color dark:border-dark-border relative z-50">
+    <div className="h-14 shrink-0 px-3 sm:px-5 flex items-center justify-between bg-surface-color dark:bg-sidebar border-b border-border-color dark:border-dark-border relative z-50">
       
+      {/* Mobile Menu Button */}
+      <motion.button 
+        whileTap={{ scale: 0.9 }}
+        onClick={onMenuClick}
+        className="lg:hidden w-8 h-8 flex items-center justify-center rounded-lg text-text-muted hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+      >
+        <Menu size={18} />
+      </motion.button>
+
       {/* Global Search */}
-      <div className="flex items-center gap-2 bg-slate-100/50 dark:bg-black/20 backdrop-blur-md border border-border-color dark:border-white/10 rounded-xl px-4 py-1.5 w-64 focus-within:ring-2 focus-within:ring-sap-blue/50 focus-within:w-72 transition-all duration-300 shadow-sm">
-        <Search size={16} className="text-text-muted group-focus-within:text-sap-blue transition-colors" />
+      <div className="hidden sm:flex items-center gap-2 bg-slate-100/50 dark:bg-black/20 backdrop-blur-md border border-border-color dark:border-white/10 rounded-xl px-4 py-1.5 flex-1 mx-3 md:w-64 focus-within:ring-2 focus-within:ring-sap-blue/50 focus-within:md:w-72 transition-all duration-300 shadow-sm max-w-xs md:max-w-none">
+        <Search size={16} className="text-text-muted group-focus-within:text-sap-blue transition-colors flex-shrink-0" />
         <input 
-          placeholder="Search inventory, orders..." 
+          placeholder="Search..." 
           className="bg-transparent border-none outline-none text-[13px] text-text-color w-full placeholder-slate-400 dark:placeholder-slate-500 font-bold"
         />
       </div>
 
+      {/* Mobile Search Icon */}
+      <motion.button 
+        whileTap={{ scale: 0.9 }}
+        className="sm:hidden w-8 h-8 flex items-center justify-center rounded-lg text-text-muted hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+      >
+        <Search size={18} />
+      </motion.button>
+
       {/* Right Actions */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4 ml-auto">
         
         {/* Theme Toggle */}
         <motion.button 

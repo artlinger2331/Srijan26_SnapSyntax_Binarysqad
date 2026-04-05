@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Menu, X } from 'lucide-react'
 import ThreeLogisticsGlobe from './components/ThreeLogisticsGlobe'
 
 // Components
@@ -36,12 +37,18 @@ const navStock = [
   { id: 'products',   icon: '📦', label: 'Products' },
 ]
 
-const Sidebar = ({ active, setActive }) => {
+const Sidebar = ({ active, setActive, isOpen, setIsOpen }) => {
   const NavItem = ({ item }) => (
     <motion.button
       whileHover={{ x: 4, backgroundColor: active === item.id ? "" : "rgba(34, 197, 94, 0.05)" }}
       whileTap={{ scale: 0.97 }}
-      onClick={() => setActive(item.id)}
+      onClick={() => {
+        setActive(item.id)
+        // Close sidebar on mobile when item is clicked
+        if (window.innerWidth < 1024) {
+          setIsOpen(false)
+        }
+      }}
       className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-left text-[13px] transition-all border-l-4 ${
         active === item.id 
           ? 'bg-sap-blue/10 dark:bg-sap-blue/20 text-sap-blue font-bold border-sap-blue shadow-[0_0_15px_rgba(34,197,94,0.1)]' 
@@ -54,30 +61,63 @@ const Sidebar = ({ active, setActive }) => {
   )
 
   return (
-    <div className="w-[220px] shrink-0 bg-surface-color dark:bg-sidebar border-r border-border-color dark:border-dark-border flex flex-col h-screen overflow-hidden">
-      {/* Brand */}
-      <div className="px-5 py-4 border-b border-border-color dark:border-dark-border flex items-center gap-2">
-        <div className="bg-sap-blue text-white px-2 py-0.5 rounded text-sm font-black tracking-tighter">SAP</div>
-        <span className="font-bold text-[13px] text-text-color tracking-wide">Smart Inventory</span>
-      </div>
+    <>
+      {/* Mobile Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsOpen(false)}
+            className="fixed inset-0 bg-black/50 z-[40] lg:hidden"
+          />
+        )}
+      </AnimatePresence>
 
-      {/* Main Nav */}
-      <nav className="p-3 flex flex-col gap-1">
-        {navTop.map(item => <NavItem key={item.id} item={item} />)}
-      </nav>
+      {/* Sidebar - Desktop visible, Mobile slides in */}
+      <motion.div 
+        initial={false}
+        animate={{ 
+          x: isOpen ? 0 : -280,
+          opacity: isOpen ? 1 : 0,
+          pointerEvents: isOpen ? 'auto' : 'none'
+        }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className={`fixed lg:relative lg:translate-x-0 w-[220px] shrink-0 bg-surface-color dark:bg-sidebar border-r border-border-color dark:border-dark-border flex flex-col h-screen overflow-hidden z-[41] lg:z-0`}
+      >
+        {/* Brand */}
+        <div className="px-5 py-4 border-b border-border-color dark:border-dark-border flex items-center gap-2 justify-between">
+          <div className="flex items-center gap-2">
+            <div className="bg-sap-blue text-white px-2 py-0.5 rounded text-sm font-black tracking-tighter">SAP</div>
+            <span className="font-bold text-[13px] text-text-color tracking-wide hidden sm:inline">Smart Inventory</span>
+          </div>
+          <button 
+            onClick={() => setIsOpen(false)}
+            className="lg:hidden text-text-muted hover:text-text-color"
+          >
+            <X size={20} />
+          </button>
+        </div>
 
-      <div className="px-5 py-2 mt-2">
-        <span className="text-[10px] font-bold text-text-muted uppercase tracking-widest">Stock Ops</span>
-      </div>
-      <nav className="p-3 flex flex-col gap-1 flex-1 overflow-y-auto">
-        {navStock.map(item => <NavItem key={item.id} item={item} />)}
-      </nav>
+        {/* Main Nav */}
+        <nav className="p-3 flex flex-col gap-1">
+          {navTop.map(item => <NavItem key={item.id} item={item} />)}
+        </nav>
 
-      {/* Footer Nav */}
-      <div className="p-3 border-t border-border-color dark:border-dark-border">
-        <NavItem item={{ id: 'settings', icon: '⚙', label: 'Settings' }} />
-      </div>
-    </div>
+        <div className="px-5 py-2 mt-2">
+          <span className="text-[10px] font-bold text-text-muted uppercase tracking-widest">Stock Ops</span>
+        </div>
+        <nav className="p-3 flex flex-col gap-1 flex-1 overflow-y-auto">
+          {navStock.map(item => <NavItem key={item.id} item={item} />)}
+        </nav>
+
+        {/* Footer Nav */}
+        <div className="p-3 border-t border-border-color dark:border-dark-border">
+          <NavItem item={{ id: 'settings', icon: '⚙', label: 'Settings' }} />
+        </div>
+      </motion.div>
+    </>
   )
 }
 
@@ -86,6 +126,7 @@ export default function App() {
   const [hasLanded, setHasLanded] = useState(false)
   const [isAppLoading, setIsAppLoading] = useState(false)
   const [showNotifications, setShowNotifications] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const handleEnterDashboard = () => {
     setHasLanded(true)
@@ -207,7 +248,7 @@ export default function App() {
       >
       
       {/* LEFT NAVIGATION */}
-      <Sidebar active={activeNav} setActive={setActiveNav} />
+      <Sidebar active={activeNav} setActive={setActiveNav} isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
 
       {/* MAIN VIEWPORT */}
       <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden relative">
@@ -311,6 +352,7 @@ export default function App() {
             showNotifications={showNotifications} 
             setShowNotifications={setShowNotifications} 
             setActiveNav={setActiveNav}
+            onMenuClick={() => setSidebarOpen(!sidebarOpen)}
           />
         </div>
       </div>
