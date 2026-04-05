@@ -9,6 +9,23 @@
   /* Glossy border edge */
 }
 
+/* Global Overflow Prevention */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+main, .container, [class*="container"] {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Prevent horizontal scrollbar */
+::-webkit-scrollbar-horizontal {
+  display: none;
+}
+
+/* Responsive Container Fixes */
 @layer base {
   :root {
     --bg-color: #f8fafc;
@@ -128,6 +145,14 @@
   
   body {
     font-size: 14px;
+    overflow-x: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
   }
 
   /* Reduce unnecessary animations on mobile for better performance */

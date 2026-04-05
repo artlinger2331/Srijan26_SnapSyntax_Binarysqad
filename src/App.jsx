@@ -236,7 +236,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* 🖥️ MAIN APPLICATION WRAPPER */}
+      {/* MAIN APPLICATION WRAPPER */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ 
@@ -264,13 +264,13 @@ export default function App() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.98, y: -10, transition: { duration: 0.15 } }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="flex-1 flex flex-col min-w-0 min-h-0"
+            className="flex-1 flex flex-col lg:flex-row min-w-0 min-h-0 gap-0 lg:gap-4"
           >
             {activeNav === 'dashboard' ? (
               <div className="flex-1 flex min-h-0">
                 
                 {/* LEFT DASHBOARD BODY */}
-                <div className="flex-1 min-w-0 overflow-y-auto p-5 md:p-6 lg:p-8 flex flex-col gap-6 scroll-smooth relative group">
+                <div className="flex-1 min-w-0 overflow-y-auto p-3 sm:p-4 md:p-6 lg:p-8 flex flex-col gap-4 sm:gap-6 scroll-smooth relative group w-full">
                   
                   {/* 🎨 TITAN WONDER: 3D LOGISTICS GLOBE */}
                   <div className="absolute inset-x-0 bottom-0 top-[20%] z-0 opacity-20 pointer-events-none">
@@ -280,12 +280,12 @@ export default function App() {
 
 
               {/* Header */}
-              <div className="relative z-10 flex justify-between items-end">
-                <div>
-                  <h1 className="text-xl md:text-2xl font-bold text-text-color tracking-tight">Enterprise Overview</h1>
-                  <p className="text-sm text-text-muted mt-1">Real-time inventory telemetry across manufacturing facilities.</p>
+              <div className="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 sm:gap-0">
+                <div className="flex-1 min-w-0">
+                  <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-text-color tracking-tight truncate">Enterprise Overview</h1>
+                  <p className="text-xs sm:text-sm text-text-muted mt-1 line-clamp-2">Real-time inventory telemetry across manufacturing facilities.</p>
                 </div>
-                <button className="px-4 py-2 border border-border-color dark:border-dark-border bg-surface-color dark:bg-dark-surface rounded-lg text-[13px] font-medium text-text-color shadow-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                <button className="px-3 sm:px-4 py-2 border border-border-color dark:border-dark-border bg-surface-color dark:bg-dark-surface rounded-lg text-[12px] sm:text-[13px] font-medium text-text-color shadow-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex-shrink-0 whitespace-nowrap">
                   Plant A (Global) ▼
                 </button>
               </div>
@@ -308,7 +308,7 @@ export default function App() {
             </div>
 
             {/* RIGHT OPERATIONAL SIDEBAR */}
-            <div className="hidden xl:block w-[320px] shrink-0 h-full relative">
+            <div className="hidden xl:block w-[280px] 2xl:w-[320px] shrink-0 h-full relative">
               <ActivityFeed />
             </div>
 

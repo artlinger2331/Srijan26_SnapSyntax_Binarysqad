@@ -87,28 +87,28 @@ const LandingPage = ({ onEnterDashboard }) => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        className="container mx-auto px-6 py-8 flex justify-between items-center z-50 relative"
+        className="w-full px-3 sm:px-6 py-6 sm:py-8 flex justify-between items-center z-50 relative overflow-hidden"
       >
-        <div className="flex items-center gap-3 group cursor-pointer">
+        <div className="flex items-center gap-2 sm:gap-3 group cursor-pointer flex-shrink-0">
           <div className="relative">
             <div className="absolute inset-0 bg-sap-blue blur-md opacity-40 group-hover:opacity-60 transition-opacity"></div>
-            <div className="relative bg-sap-blue text-white p-1.5 px-2.5 rounded-lg text-xs font-black tracking-tighter border border-white/20">SAP</div>
+            <div className="relative bg-sap-blue text-white p-1.5 px-2.5 rounded-lg text-[10px] sm:text-xs font-black tracking-tighter border border-white/20">SAP</div>
           </div>
-          <span className="text-xl font-bold tracking-tight text-white flex items-center gap-1.5">
-            Smart <span className="text-slate-400 font-medium">Inventory</span>
+          <span className="text-base sm:text-xl font-bold tracking-tight text-white flex items-center gap-1 sm:gap-1.5 line-clamp-1">
+            Smart <span className="text-slate-400 font-medium hidden sm:inline">Inventory</span>
           </span>
         </div>
         
-        <div className="hidden md:flex gap-10 text-[13px] font-semibold text-slate-400 tracking-wide uppercase">
-          <a href="#" className="hover:text-white transition-colors flex items-center gap-2 relative group">
+        <div className="hidden md:flex gap-10 text-[13px] font-semibold text-slate-400 tracking-wide uppercase flex-shrink-0">
+          <a href="#" className="hover:text-white transition-colors flex items-center gap-2 relative group whitespace-nowrap">
             <Globe size={14}/> Platform
             <div className="absolute -bottom-2 left-0 w-0 h-[2px] bg-sap-blue transition-all group-hover:w-full"></div>
           </a>
-          <a href="#" className="hover:text-white transition-colors flex items-center gap-2 relative group">
+          <a href="#" className="hover:text-white transition-colors flex items-center gap-2 relative group whitespace-nowrap">
             <Network size={14}/> Systems
             <div className="absolute -bottom-2 left-0 w-0 h-[2px] bg-sap-blue transition-all group-hover:w-full"></div>
           </a>
-          <a href="#" className="hover:text-white transition-colors flex items-center gap-2 relative group">
+          <a href="#" className="hover:text-white transition-colors flex items-center gap-2 relative group whitespace-nowrap">
             <ShieldCheck size={14}/> Enterprise
             <div className="absolute -bottom-2 left-0 w-0 h-[2px] bg-sap-blue transition-all group-hover:w-full"></div>
           </a>
@@ -116,38 +116,38 @@ const LandingPage = ({ onEnterDashboard }) => {
 
         <button
           onClick={onEnterDashboard}
-          className="relative inline-flex h-10 overflow-hidden rounded-xl p-[1px] focus:outline-none group"
+          className="relative inline-flex h-9 sm:h-10 overflow-hidden rounded-xl p-[1px] focus:outline-none group flex-shrink-0 ml-2 sm:ml-0"
         >
           <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,#22c55e_50%,transparent_100%)] opacity-50 group-hover:opacity-100 transition-opacity" />
-          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-xl bg-[#0a0f1c] px-6 text-[13px] font-bold text-white backdrop-blur-3xl hover:bg-[#111827] transition-colors gap-2">
+          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-xl bg-[#0a0f1c] px-4 sm:px-6 text-[12px] sm:text-[13px] font-bold text-white backdrop-blur-3xl hover:bg-[#111827] transition-colors gap-1 sm:gap-2 whitespace-nowrap">
             Initialize <Zap size={14} className="text-sap-blue" />
           </span>
         </button>
       </motion.nav>
 
       {/* MAIN HERO */}
-      <main className="container mx-auto px-6 flex-1 flex flex-col items-center justify-center z-10 relative">
+      <main className="w-full px-3 sm:px-6 flex-1 flex flex-col items-center justify-center z-10 relative overflow-hidden">
         
-        {/* The God Core (Background/Centerpiece) */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center pointer-events-none opacity-30 mix-blend-screen scale-100 lg:scale-75">
+        {/* The God Core (Background/Centerpiece) - Only show on larger screens */}
+        <div className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full items-center justify-center pointer-events-none opacity-30 mix-blend-screen">
            {/* Complex Orbital System */}
-           <div className="relative w-[800px] h-[800px]" style={{ perspective: '1200px' }}>
-              <OrbitalRing size={800} duration={40} borderStyle="border-white/5 border-dashed" color="" />
-              <OrbitalRing size={650} duration={25} borderStyle="border-emerald-500/10" color="" reverse />
-              <OrbitalRing size={500} duration={15} borderStyle="border-blue-500/20 shadow-[0_0_40px_rgba(59,130,246,0.1)_inset]" color="" />
-              <OrbitalRing size={350} duration={10} borderStyle="border-white/20 border-dotted" color="" reverse />
+           <div className="relative w-[600px] h-[600px] xl:w-[800px] xl:h-[800px]" style={{ perspective: '1200px' }}>
+              <OrbitalRing size={600} duration={40} borderStyle="border-white/5 border-dashed" color="" />
+              <OrbitalRing size={490} duration={25} borderStyle="border-emerald-500/10" color="" reverse />
+              <OrbitalRing size={380} duration={15} borderStyle="border-blue-500/20 shadow-[0_0_40px_rgba(59,130,246,0.1)_inset]" color="" />
+              <OrbitalRing size={260} duration={10} borderStyle="border-white/20 border-dotted" color="" reverse />
               
               {/* Inner Pulsing Star */}
               <motion.div 
                 animate={{ scale: [0.8, 1.2, 0.8], opacity: [0.4, 1, 0.4] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-white rounded-full blur-[60px]"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 xl:w-32 xl:h-32 bg-white rounded-full blur-[60px]"
               />
            </div>
         </div>
 
         {/* Foreground Content */}
-        <div className="relative z-20 flex flex-col items-center text-center max-w-3xl px-6 py-12">
+        <div className="relative z-20 flex flex-col items-center text-center max-w-4xl py-8 sm:py-12 w-full">
           
           {/* Status Chip */}
           <motion.div 
@@ -168,9 +168,9 @@ const LandingPage = ({ onEnterDashboard }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.1] mb-6"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[1.1] mb-4 sm:mb-6 px-2 sm:px-0" 
           >
-            Supply Chain <br/>
+            Supply Chain <br className="hidden sm:block"/>
             <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-cyan-400 to-sap-blue drop-shadow-[0_0_40px_rgba(34,197,94,0.3)]">
               Perfected.
               {/* Fake Glitch Overlay */}
@@ -188,7 +188,7 @@ const LandingPage = ({ onEnterDashboard }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5, delay: 0.6 }}
-            className="text-base md:text-lg text-slate-400 max-w-2xl leading-relaxed font-light mb-10"
+            className="text-sm sm:text-base md:text-lg text-slate-400 max-w-2xl leading-relaxed font-light mb-8 sm:mb-10 px-2 sm:px-0"
           >
             Enter the pinnacle of structural inventory intelligence. Unprecedented SAP integration, sub-millisecond precision, and an interface forged for the modern enterprise.
           </motion.p>
@@ -197,50 +197,50 @@ const LandingPage = ({ onEnterDashboard }) => {
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1, delay: 0.8, type: "spring" }}
-            className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto justify-center"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto justify-center px-2 sm:px-0"
           >
             <button
               onClick={onEnterDashboard}
-              className="relative group bg-white text-slate-950 flex items-center justify-center gap-3 px-10 py-5 rounded-2xl font-black text-[15px] transition-all hover:bg-slate-100 hover:shadow-[0_0_50px_rgba(255,255,255,0.4)] overflow-hidden"
+              className="relative group bg-white text-slate-950 flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-10 py-4 sm:py-5 rounded-2xl font-black text-[14px] sm:text-[15px] transition-all hover:bg-slate-100 hover:shadow-[0_0_50px_rgba(255,255,255,0.4)] overflow-hidden"
             >
               <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-[-100%] group-hover:animate-[shimmer_1.5s_infinite]"></div>
-              Engage Subsystem <ArrowRight size={20} className="text-sap-blue group-hover:translate-x-2 transition-transform" />
+              Engage <span className="hidden sm:inline">Subsystem</span> <ArrowRight size={18} className="text-sap-blue group-hover:translate-x-2 transition-transform" />
             </button>
-            <button className="bg-[#0a0f1c]/50 border border-white/10 backdrop-blur-md flex items-center justify-center gap-3 text-white px-10 py-5 rounded-2xl font-bold text-[15px] hover:bg-white/5 hover:border-white/30 transition-all shadow-[0_0_30px_rgba(0,0,0,0.5)]">
-               Architectural Overview
+            <button className="bg-[#0a0f1c]/50 border border-white/10 backdrop-blur-md flex items-center justify-center gap-2 sm:gap-3 text-white px-6 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold text-[14px] sm:text-[15px] hover:bg-white/5 hover:border-white/30 transition-all shadow-[0_0_30px_rgba(0,0,0,0.5)] whitespace-nowrap">
+               <span className="hidden sm:inline">Architectural</span> Overview
             </button>
           </motion.div>
         </div>
 
-        {/* 3D Glass Data Fragments (Floating around the orb) */}
-        <div className="absolute inset-0 pointer-events-none">
+        {/* 3D Glass Data Fragments (Floating around the orb) - Only show on desktop */}
+        <div className="hidden 2xl:block absolute inset-0 pointer-events-none">
           <FloatingWidget 
             delay={1.5} icon={Cpu} title="Processing" value="Quantum Grid" glowColor="blue"
-            className="top-[10%] left-[5%] lg:left-[8%]" xOffset={10}
+            className="top-[10%] left-[8%]" xOffset={10}
           />
           <FloatingWidget 
             delay={1.7} icon={Activity} title="Sync Rate" value="0.4 ms / TPS" glowColor="emerald"
-            className="top-[10%] right-[5%] lg:right-[8%]" xOffset={-10}
+            className="top-[10%] right-[8%]" xOffset={-10}
           />
           <FloatingWidget 
             delay={1.9} icon={Box} title="Global Nodes" value="14,204 ONLINE" glowColor="cyan"
-            className="bottom-[12%] left-[5%] lg:left-[8%]" xOffset={10}
+            className="bottom-[12%] left-[8%]" xOffset={10}
           />
           <FloatingWidget 
             delay={2.1} icon={ShieldCheck} title="Protocol" value="SOC2 / AES-256" glowColor="indigo"
-            className="bottom-[12%] right-[5%] lg:right-[8%]" xOffset={-10}
+            className="bottom-[12%] right-[8%]" xOffset={-10}
           />
         </div>
 
       </main>
 
-      {/* EXPERIMENTAL BOTTOM DOCK ILLUSION */}
-      <div className="absolute bottom-0 w-full h-[150px] pointer-events-none overflow-hidden flex justify-center items-end" style={{ perspective: '500px' }}>
+      {/* EXPERIMENTAL BOTTOM DOCK ILLUSION - Only show on larger screens */}
+      <div className="hidden lg:block absolute bottom-0 w-full h-[150px] pointer-events-none overflow-hidden" style={{ perspective: '500px' }}>
          <motion.div 
             initial={{ rotateX: 60, y: 100, opacity: 0 }}
             animate={{ rotateX: 60, y: 0, opacity: 1 }}
             transition={{ duration: 1.5, delay: 1 }}
-            className="w-[80%] h-[200px] border-t border-x border-sap-blue/30 rounded-t-full bg-gradient-to-b from-sap-blue/10 to-transparent shadow-[0_-20px_60px_rgba(34,197,94,0.15)]"
+            className="w-[80%] h-[200px] border-t border-x border-sap-blue/30 rounded-t-full bg-gradient-to-b from-sap-blue/10 to-transparent shadow-[0_-20px_60px_rgba(34,197,94,0.15)] mx-auto"
          >
            {/* Scanning laser line */}
            <motion.div 
